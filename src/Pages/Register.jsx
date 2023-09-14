@@ -1,3 +1,7 @@
+import Button from "../components/button/Button";
+import Input from "../components/input/input";
+import { Link } from "react-router-dom";
+
 const Register = () => {
     return (
         <>
@@ -20,11 +24,10 @@ const Register = () => {
                                 >
                                     email
                                 </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    className="bg-input-bg rounded-sm w-full p-2.5 outline-none"
+                                <Input
+                                    type={"email"}
+                                    id={"email"}
+                                    name={"email"}
                                 />
                             </div>
                             <div>
@@ -34,11 +37,10 @@ const Register = () => {
                                 >
                                     Display name
                                 </label>
-                                <input
-                                    type="text"
-                                    id="display-name"
-                                    name="display-name"
-                                    className="bg-input-bg rounded-sm w-full p-2.5 outline-none"
+                                <Input
+                                    type={"text"}
+                                    id={"display-name"}
+                                    name={"display-name"}
                                 />
                             </div>
                             <div>
@@ -48,11 +50,10 @@ const Register = () => {
                                 >
                                     username
                                 </label>
-                                <input
-                                    type="text"
-                                    id="user-name"
-                                    name="user-name"
-                                    className="bg-input-bg rounded-sm w-full p-2.5 outline-none"
+                                <Input
+                                    type={"text"}
+                                    id={"user-name"}
+                                    name={"user-name"}
                                 />
                             </div>
                             <div>
@@ -62,11 +63,10 @@ const Register = () => {
                                 >
                                     Phone
                                 </label>
-                                <input
-                                    type="number"
-                                    id="phone"
-                                    name="phone"
-                                    className="bg-input-bg rounded-sm w-full p-2.5 outline-none"
+                                <Input
+                                    type={"number"}
+                                    id={"phone"}
+                                    name={"phone"}
                                 />
                             </div>
                             <div>
@@ -76,20 +76,24 @@ const Register = () => {
                                 >
                                     password
                                 </label>
-                                <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    className="bg-input-bg rounded-sm w-full p-2.5 outline-none"
+                                <Input
+                                    type={"password"}
+                                    id={"password"}
+                                    name={"password"}
                                 />
                             </div>
-                            <button className="bg-blue-600 rounded-sm font-medium py-2.5">
-                                Continue
-                            </button>
+                            <Button
+                                customClass={
+                                    "bg-blue-600 rounded-sm font-medium py-2.5"
+                                }
+                                name={"continue"}
+                            />
                         </form>
-                        <span className="text-blue-400 text-sm font-medium hover:underline hover:cursor-pointer">
-                            Already have an account?
-                        </span>
+                        <Link to="/login">
+                            <span className="text-blue-400 text-sm font-medium hover:underline hover:cursor-pointer">
+                                Already have an account?
+                            </span>
+                        </Link>
                     </div>
                 </div>
             </section>
