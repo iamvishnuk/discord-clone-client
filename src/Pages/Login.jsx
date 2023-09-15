@@ -1,8 +1,36 @@
+import { useEffect, useState } from "react";
 import Button from "../components/button/Button";
 import Input from "../components/input/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { userLogin } from "../services/api";
+import toast from "react-hot-toast";
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("userToken");
+        if (token) navigate("/");
+    }, []);
+
+    // for handing loing
+    const handleLogin = (e) => {
+        e.preventDefault();
+        userLogin({ email, password })
+            .then((res) => {
+                localStorage.setItem("userToken", res.data.token);
+                console.log(res.data)
+                toast.success(res.data.message);
+                navigate("/");
+            })
+            .catch((error) => {
+                toast.error(error.response.data.message);
+                console.log(error.response.data.message);
+            });
+    };
+
     return (
         <>
             <section className="w-screen h-screen bg-img-login-register bg-contain">
@@ -31,6 +59,8 @@ const Login = () => {
                                     type={"email"}
                                     id={"email"}
                                     name={"email"}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                             <div>
@@ -44,6 +74,10 @@ const Login = () => {
                                     type={"password"}
                                     id={"password"}
                                     name={"password"}
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                 />
                                 <span className="text-blue-400 text-xs font-medium hover:underline hover:cursor-pointer">
                                     Forgot your password?
@@ -54,6 +88,8 @@ const Login = () => {
                                     "bg-blue-600 rounded-sm font-medium py-2.5"
                                 }
                                 name={"Login"}
+                                type={"submit"}
+                                onClick={handleLogin}
                             />
                         </form>
                         <div className="text-sm font-light">
