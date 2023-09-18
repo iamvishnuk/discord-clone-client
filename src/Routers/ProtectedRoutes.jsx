@@ -8,6 +8,7 @@ const ProtectedRoutes = ({ route }) => {
 
     useEffect(() => {
         const verify = () => {
+            console.log("ProtectedRoutes called")
             isAuthUser()
                 .then((res) => {
                     setAuth(res.data.auth);

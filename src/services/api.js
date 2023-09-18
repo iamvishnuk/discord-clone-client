@@ -9,5 +9,5 @@ export const userLogin = (value) => {
 }
 
 export const isAuthUser = () => {
-    return userAxiosInstance.get("/is_auth-user")
+    return userAxiosInstance.get("/is-auth-user")
 }

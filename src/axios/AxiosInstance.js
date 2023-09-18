@@ -10,10 +10,12 @@ const createAxiosClient = () => {
     return client;
 };
 
-const attackToken = (req, tokenName) => {
+const attachToken = (req, tokenName) => {
     let authToken = localStorage.getItem(tokenName);
     if (authToken) {
-        req.headers.Authorization = `Bearer ${authToken}`;
+        const modifiedReq = { ...req };
+        modifiedReq.headers.Authorization = `Bearer ${authToken}`;
+        return modifiedReq;
     }
     return req;
 };
@@ -21,7 +23,7 @@ const attackToken = (req, tokenName) => {
 const userAxiosInstance = createAxiosClient(baseURL);
 
 userAxiosInstance.interceptors.request.use(async (req) => {
-    const modifiedReq = attackToken(req, "userToken");
+    const modifiedReq = attachToken(req, "userToken");
     return modifiedReq;
 });
 
