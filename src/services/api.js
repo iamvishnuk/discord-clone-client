@@ -5,9 +5,23 @@ export const userRegisteration = (value) => {
 };
 
 export const userLogin = (value) => {
-    return userAxiosInstance.post("/login", value)
-}
+    return userAxiosInstance.post("/login", value);
+};
 
 export const isAuthUser = () => {
-    return userAxiosInstance.get("/is-auth-user")
-}
+    return userAxiosInstance.get("/is-auth-user");
+};
+
+export const addFrined = (value) =>
+    userAxiosInstance.post("/add-friend", value);
+
+export const getPendingRequests = () =>
+    userAxiosInstance.get("/get-pending-requests");
+
+export const acceptFriendRequest = (value) =>
+    userAxiosInstance.post("/accept-friend-request", value);
+
+export const rejectFriendRequest = (id) =>
+    userAxiosInstance.delete(`/reject-friend-request/${id}`);
+
+export const getAllFriends = () => userAxiosInstance.get("/get-all-friends");

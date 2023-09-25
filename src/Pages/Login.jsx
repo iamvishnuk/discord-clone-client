@@ -85,7 +85,7 @@ const Login = () => {
                             </div>
                             <Button
                                 customClass={
-                                    "bg-blue-600 rounded-sm font-medium py-2.5"
+                                    "bg-blue-600"
                                 }
                                 name={"Login"}
                                 type={"submit"}
