@@ -1,13 +1,32 @@
+import { useEffect, useState } from "react";
 import SingleChat from "../chat/SingleChat";
 import UserDetailsInDM from "../profile/UserDetailsInDM";
+import { useParams } from "react-router-dom";
+import { getDmUserDetails } from "../../services/api";
 
 const Message = () => {
+    const { id } = useParams();
+    const [dmUserDetails, setDmUserDetails] = useState({});
+
+    const initiate = async () => {
+        try {
+            const userDetailsResponse = await getDmUserDetails(id);
+            setDmUserDetails(userDetailsResponse.data);
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    useEffect(() => {
+        initiate();
+    }, [id]);
+
     return (
         <div className="flex flex-col h-full overflow-hidden">
             <div className="flex flex-col h-full justify-between p-5">
                 <div className="flex flex-col h-full  overflow-x-auto mb-4 hide-scrollbar">
                     {/* user details */}
-                    <UserDetailsInDM />
+                    <UserDetailsInDM userDetails={dmUserDetails} />
                     {/* end of user details */}
                     <hr />
                     <div className="flex flex-col h-full">

@@ -3,7 +3,7 @@ import { IoMdRocket } from "react-icons/io";
 const Nitro = () => {
     return (
         <>
-            <div className="h-11 w-full rounded-md flex hover:bg-gray-3">
+            <div className="h-11 w-full rounded-md flex hover:bg-gray-3 hover:cursor-pointer">
                 <div className="h-11 w-20 flex justify-center items-center">
                     <IoMdRocket size={27} color="#E0E0E0" />
                 </div>

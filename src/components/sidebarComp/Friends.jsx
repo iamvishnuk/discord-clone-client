@@ -4,7 +4,7 @@ const Friends = ({ onClick }) => {
     return (
         <>
             <div
-                className="h-11 w-full bg-gray-3 rounded-md flex"
+                className="h-11 w-full bg-gray-3 rounded-md flex hover:cursor-pointer"
                 onClick={onClick}
             >
                 <div className="h-11 w-20 flex justify-center items-center">

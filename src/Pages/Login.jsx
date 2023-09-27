@@ -4,11 +4,14 @@ import Input from "../components/input/input";
 import { Link, useNavigate } from "react-router-dom";
 import { userLogin } from "../services/api";
 import toast from "react-hot-toast";
+import { changeUserDetails } from "../store/slice/userSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const token = localStorage.getItem("userToken");
@@ -21,13 +24,20 @@ const Login = () => {
         userLogin({ email, password })
             .then((res) => {
                 localStorage.setItem("userToken", res.data.token);
-                console.log(res.data)
+                dispatch(
+                    changeUserDetails({
+                        userId: res.data.userId,
+                        displayName: res.data.displayName,
+                        userName: res.data.userName,
+                        image: res.data.image,
+                        email: res.data.email,
+                    })
+                );
                 toast.success(res.data.message);
                 navigate("/");
             })
             .catch((error) => {
                 toast.error(error.response.data.message);
-                console.log(error.response.data.message);
             });
     };
 
@@ -84,9 +94,7 @@ const Login = () => {
                                 </span>
                             </div>
                             <Button
-                                customClass={
-                                    "bg-blue-600"
-                                }
+                                customClass={"bg-blue-600"}
                                 name={"Login"}
                                 type={"submit"}
                                 onClick={handleLogin}
