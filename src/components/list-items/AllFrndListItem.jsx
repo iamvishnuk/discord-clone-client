@@ -2,22 +2,36 @@ import { BiSolidMessageAlt } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { defaultProfileImg } from "../../constants/Constant";
-import { addFriendToDirectMessageList } from "../../services/api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFrndToDmList } from "../../store/slice/directMsgSlice";
 
 const AllFrndListItem = ({ displayName, userId, image }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    // getting the value from the store
+    const { data } = useSelector((state) => state.directMsg);
+
+    // for handling the onClic
+    const handleOnClick = () => {
+        if (data) {
+            // the userid is already in the store don't call the api
+            const find = data.find((d) => d._id === userId);
+            if (!find) {
+                console.log("this handleOnClick is called");
+                dispatch(addFrndToDmList(userId));
+            }
+        } else {
+            dispatch(addFrndToDmList(userId));
+        }
+        navigate(`/me/${userId}`);
+    };
+
     return (
         <>
             <div
                 className="px-2 h-16 border-b border-border-2 transition duration-300 hover:bg-gray-5 hover:rounded-md flex justify-between hover:cursor-pointer"
-                onClick={() => {
-                    dispatch(addFrndToDmList(userId));
-                    navigate(`/me/${userId}`);
-                }}
+                onClick={() => handleOnClick()}
             >
                 <div className="flex items-center space-x-2">
                     <div>

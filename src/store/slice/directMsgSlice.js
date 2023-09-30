@@ -1,11 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addFriendToDirectMessageList } from "../../services/api";
+import {
+    addFriendToDirectMessageList,
+    getDmUserList,
+} from "../../services/api";
 
 export const addFrndToDmList = createAsyncThunk(
     "addFrndToDmList",
     async (userId) => {
-        const response = await addFriendToDirectMessageList({userId});
+        const response = await addFriendToDirectMessageList({ userId });
         return response.data.directMessage;
+    }
+);
+
+export const getDirectMessageList = createAsyncThunk(
+    "getDirectMessageList",
+    async () => {
+        const res = await getDmUserList();
+        return res.data.directMessage;
     }
 );
 
@@ -26,6 +37,16 @@ export const DirectMsgSlice = createSlice({
             state.data = action.payload;
         });
         builders.addCase(addFrndToDmList.rejected, (state, action) => {
+            state.isError = true;
+        });
+        builders.addCase(getDirectMessageList.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builders.addCase(getDirectMessageList.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.data = action.payload;
+        });
+        builders.addCase(getDirectMessageList.rejected, (state, action) => {
             state.isError = true;
         });
     },

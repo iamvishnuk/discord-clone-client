@@ -29,5 +29,4 @@ export const getAllFriends = () => userAxiosInstance.get("/get-all-friends");
 export const addFriendToDirectMessageList = (data) =>
     userAxiosInstance.post("/add-friend-to-dm-list", data);
 
-export const getDmUserDetails = (userId) =>
-    userAxiosInstance.get(`/get-dm-userdetails/${userId}`);
+export const getDmUserList = () => userAxiosInstance.get("/get-dm-userlist");

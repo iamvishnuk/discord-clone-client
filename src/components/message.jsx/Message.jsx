@@ -2,24 +2,19 @@ import { useEffect, useState } from "react";
 import SingleChat from "../chat/SingleChat";
 import UserDetailsInDM from "../profile/UserDetailsInDM";
 import { useParams } from "react-router-dom";
-import { getDmUserDetails } from "../../services/api";
+import { useSelector } from "react-redux";
 
 const Message = () => {
     const { id } = useParams();
     const [dmUserDetails, setDmUserDetails] = useState({});
-
-    const initiate = async () => {
-        try {
-            const userDetailsResponse = await getDmUserDetails(id);
-            setDmUserDetails(userDetailsResponse.data);
-        } catch (error) {
-            console.error(error.message);
-        }
-    };
+    const { data } = useSelector((state) => state.directMsg);
 
     useEffect(() => {
-        initiate();
-    }, [id]);
+        // Check if data is available before setting dmUserDetails
+        if (data && data.length > 0) {
+            setDmUserDetails(data.find((frnd) => frnd._id === id));
+        }
+    }, [id, data]);
 
     return (
         <div className="flex flex-col h-full overflow-hidden">

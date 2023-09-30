@@ -1,16 +1,30 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { isAuthUser } from "../services/api";
+import { useDispatch } from "react-redux";
+import { changeUserDetails } from "../store/slice/userSlice";
+import { getDirectMessageList } from "../../src/store/slice/directMsgSlice";
 
 const ProtectedRoutes = ({ route }) => {
     const [auth, setAuth] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const verify = () => {
-            console.log("ProtectedRoutes called")
+            console.log("ProtectedRoutes called");
             isAuthUser()
                 .then((res) => {
+                    dispatch(
+                        changeUserDetails({
+                            userId: res.data.userId,
+                            displayName: res.data.displayName,
+                            userName: res.data.userName,
+                            image: res.data.image,
+                            email: res.data.email,
+                        })
+                    );
+                    dispatch(getDirectMessageList());
                     setAuth(res.data.auth);
                 })
                 .catch((error) => {
