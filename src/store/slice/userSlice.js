@@ -8,6 +8,7 @@ export const UserSlice = createSlice({
         userName: "",
         image: "",
         email: "",
+        friends: null
     },
     reducers: {
         changeUserDetails: (state, action) => {
@@ -16,6 +17,7 @@ export const UserSlice = createSlice({
             state.userName = action.payload.userName;
             state.image = action.payload.image;
             state.email = action.payload.email;
+            state.friends = action.payload.friends
         },
     },
 });

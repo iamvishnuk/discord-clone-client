@@ -24,8 +24,6 @@ export const acceptFriendRequest = (value) =>
 export const rejectFriendRequest = (id) =>
     userAxiosInstance.delete(`/reject-friend-request/${id}`);
 
-export const getAllFriends = () => userAxiosInstance.get("/get-all-friends");
-
 export const addFriendToDirectMessageList = (data) =>
     userAxiosInstance.post("/add-friend-to-dm-list", data);
 

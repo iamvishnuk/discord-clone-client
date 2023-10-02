@@ -10,6 +10,7 @@ import UserProfile from "../sidebarComp/UserProfile";
 const DirectMsgSidebar = () => {
     const navigate = useNavigate();
     const { data } = useSelector((state) => state.directMsg);
+    const { onlineUserList } = useSelector((state) => state.onlineUserlist);
 
     return (
         <>
@@ -51,6 +52,7 @@ const DirectMsgSidebar = () => {
                                     displayName={frnd.displayName}
                                     image={frnd.image}
                                     onClick={() => navigate(`/me/${frnd._id}`)}
+                                    online={onlineUserList && onlineUserList.includes(frnd._id)}
                                 />
                             ))}
                     </div>

@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 const UserProfile = () => {
     const { displayName } = useSelector((state) => state.user);
-    console.log(displayName);
 
     return (
         <>

@@ -31,6 +31,7 @@ const Login = () => {
                         userName: res.data.userName,
                         image: res.data.image,
                         email: res.data.email,
+                        frineds: res.data.frineds,
                     })
                 );
                 toast.success(res.data.message);

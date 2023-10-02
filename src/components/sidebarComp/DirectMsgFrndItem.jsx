@@ -1,7 +1,7 @@
 import { IoMdClose } from "react-icons/io";
 import { defaultProfileImg } from "../../constants/Constant";
 
-const DirectMsgFrndItem = ({ onClick, displayName, image }) => {
+const DirectMsgFrndItem = ({ onClick, displayName, image, online }) => {
     return (
         <>
             <div
@@ -16,7 +16,22 @@ const DirectMsgFrndItem = ({ onClick, displayName, image }) => {
                     />
                 </div>
                 <div className="w-full flex items-center">
-                    <p className="font-medium text-gray-300">{displayName}</p>
+                    <div>
+                        <p className="font-medium text-sm text-gray-300">
+                            {displayName}
+                        </p>
+                        {online ? (
+                            <p className="text-xs text-gray-300 flex items-center tracking-wider">
+                                <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+                                Online
+                            </p>
+                        ) : (
+                            <p className="text-xs text-gray-300 flex items-center tracking-wider">
+                                <div className="w-2 h-2 bg-red-500 rounded-full mr-1"></div>
+                                Offline
+                            </p>
+                        )}
+                    </div>
                 </div>
                 <div className="items-center hidden group-hover:flex mr-3">
                     <IoMdClose size={20} color="white" />
