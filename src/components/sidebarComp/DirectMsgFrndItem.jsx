@@ -22,7 +22,9 @@ const DirectMsgFrndItem = ({ onClick, displayName, image, online }) => {
                         </p>
                         {online ? (
                             <p className="text-xs text-gray-300 flex items-center tracking-wider">
-                                <div className="w-2 h-2 bg-green-500 rounded-full mr-1"></div>
+                                <div className="w-2 h-2 bg-green-500 rounded-full mr-1 flex relative">
+                                    <div className=" absolute w-2 h-2 bg-green-500 rounded-full mr-1 animate-ping"></div>
+                                </div>
                                 Online
                             </p>
                         ) : (

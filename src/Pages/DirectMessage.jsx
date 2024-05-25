@@ -7,7 +7,7 @@ const DirectMessage = () => {
     const params = useParams();
 
     useEffect(() => {
-        console.log(params.id)
+        console.log(params.id);
     }, []);
 
     return (

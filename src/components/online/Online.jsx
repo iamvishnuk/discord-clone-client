@@ -43,7 +43,7 @@ const Online = () => {
                 <div className="h-full flex flex-col space-y-3">
                     <div className="h-12">
                         <p className="uppercase text-xs font-medium tracking-wide">
-                            Online ― {}
+                            Online ― {onlineFriends.length !== 0 && onlineFriends.length}
                         </p>
                     </div>
                     <div className="h-full">

@@ -48,7 +48,7 @@ const Pending = () => {
                     </p>
                 </div>
                 <div className="h-full">
-                    <div className="h-full grid overflow-x-auto hide-scrollbar">
+                    <div className="h-full overflow-x-auto hide-scrollbar">
                         {requests.length !== 0 &&
                             requests.map((data) => (
                                 <PendingListItem

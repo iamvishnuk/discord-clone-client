@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeUserDetails } from "../store/slice/userSlice";
 import { getDirectMessageList } from "../../src/store/slice/directMsgSlice";
 import Socket from "../socket/SocketInstance";
+import { hanldeSocketDisconnect } from "../utils";
 
 const ProtectedRoutes = ({ route }) => {
     const [auth, setAuth] = useState(null);
@@ -40,9 +41,8 @@ const ProtectedRoutes = ({ route }) => {
         verify();
 
         return () => {
-            // disconnect user event for removing the user from the online user list
-            console.log("return called")
-            Socket.emit("disconnect-user");
+            window.addEventListener("beforeunload", hanldeSocketDisconnect);
+            hanldeSocketDisconnect()
         };
     }, []);
 

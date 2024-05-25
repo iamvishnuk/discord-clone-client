@@ -26,7 +26,7 @@ export default {
             },
             textColor: {
                 "textColor-gray-1": "#87898C",
-                "textColor-gray-2": "#B5BAC1"
+                "textColor-gray-2": "#B5BAC1",
             },
             fontFamily: {
                 OpenSans: ["Open Sans", "sans-serif"],
